@@ -6,7 +6,7 @@ USE yelp;
 
 CREATE TABLE restaurants (
   id int not null auto_increment,
-  name varchar(30) not null,
+  name varchar(50) not null,
   primary key(id)
 );
 
@@ -25,6 +25,7 @@ CREATE TABLE users (
 CREATE TABLE reviews (
   id int not null auto_increment primary key,
   date date not null,
+  review text not null,
   stars tinyint not null,
   useful tinyint default 0,
   funny tinyint default 0,

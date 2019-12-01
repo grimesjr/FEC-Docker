@@ -21,7 +21,7 @@ let mysqlQueries = {
   },
 
   getRestaurantReviews: function(name, callback) {
-    connection.query(`SELECT * FROM restaurants INNER JOIN reviews ON restaurants.id = reviews.restaurantId INNER JOIN users ON users.id = reviews.userId where restaurants.name = '${name}';`, function(err, data) {
+    connection.query(`SELECT * FROM restaurants INNER JOIN reviews ON restaurants.id = reviews.restaurant_id INNER JOIN users ON users.id = reviews.user_id where restaurants.name = '${name}';`, function(err, data) {
       if(err) {
         console.log('get restaurant review error');
       } else {
