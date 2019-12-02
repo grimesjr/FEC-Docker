@@ -6,6 +6,8 @@ const port = 3000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname + '/../client/dist'));
+
 app.get('/restaurantReviews/', function(req, res) {
 
   db.getReviews(function(err, data) {
@@ -19,6 +21,7 @@ app.get('/restaurantReviews/', function(req, res) {
 
 app.get('/restaurantReviews/:name', function(req, res) {
   let name = req.params.name;
+  console.log(name);
   db.getRestaurantReviews(name, function(err, data) {
     if(err) {
       console.log('error get restaurant reviews');

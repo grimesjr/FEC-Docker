@@ -3,8 +3,9 @@ const mysql = require('mysql');
 const restaurantsList = require('./restaurantList.js');
 const restaurants = restaurantsList.restaurants;
 const numUsers = 300;
-const numReviews = 1200;
+const numReviews = 1500;
 const numRestaurants = restaurants.length;
+const foodPics = 'https://yelpfoodpics.s3-us-west-1.amazonaws.com/';
 
 
 const connection = mysql.createConnection({
@@ -36,7 +37,7 @@ let mySQLqueries = {
   },
 
   seedUsers: function() {
-    let query = `INSERT INTO users (name, location, friends, picture) VALUES `;
+    let query = `INSERT INTO users (name, location, friends, elite, picture) VALUES `;
 
     for (let i = 0; i < numUsers; i++) {
       let firstName = faker.name.firstName();
@@ -44,12 +45,19 @@ let mySQLqueries = {
       let name = `${firstName} ${lastInitial}`;
       let location = `${faker.address.city()}, ${faker.address.stateAbbr()}`;
       let friends = Math.floor(Math.random() * 200);
+      let chanceOfElite = Math.floor(Math.random() * 9);
+      let elite = 0;
       let picture = faker.image.avatar();
+
+      //10% chance of elite status
+      if(chanceOfElite < 1) {
+        elite = 1;
+      }
       
       if(i === numUsers - 1) {
-        query += `('${name}', '${location}', '${friends}', '${picture}');`;
+        query += `('${name}', '${location}', ${friends}, ${elite}, '${picture}');`;
       } else {
-        query += `('${name}', '${location}', '${friends}', '${picture}'), `;
+        query += `('${name}', '${location}', ${friends}, ${elite}, '${picture}'), `;
       }
     }
     connection.query(query, function(err, data) {
@@ -67,14 +75,28 @@ let mySQLqueries = {
     for(let i = 0; i < numReviews; i++) {
       let date = faker.date.recent(1600).toISOString().split('T')[0]
       let review = faker.lorem.paragraph();
-      let stars = 5;
+      let stars = Math.floor(Math.random() * 4) + 1;
       let restaurantId = Math.floor(Math.random() * numRestaurants);
       let userId = Math.floor(Math.random() * numUsers);
       let query = `INSERT INTO reviews(date, review, stars, user_id, restaurant_id) VALUES `;
+      let chanceOfPics = Math.floor(Math.random() * 9);
+
+      let numFoodPics = Math.floor(Math.random() * 7);
+      let links = [];
+      
+
+      //20% chance of adding picture to review
+      if(chanceOfPics < 2) {
+        for(let i = 0; i < numFoodPics; i++) {
+          let foodPicNum = Math.floor(Math.random() * 60);
+          links.push(foodPics + foodPicNum + '.jpg' );
+        }
+      }
+
+      
 
       query += `('${date}', '${review}', ${stars}, ${userId}, ${restaurantId}); `;  
     
-      let links = ['http://lorempixel.com/400/200/food/', 'http://lorempixel.com/400/200/food/'];
       connection.query(query, function(err, data) {
         if(err) {
           console.log('query error', err);
@@ -101,4 +123,4 @@ let mySQLqueries = {
 
 // mySQLqueries.seedRestaurants();
 mySQLqueries.seedUsers();
-mySQLqueries.seedReviews();
+// mySQLqueries.seedReviews();
