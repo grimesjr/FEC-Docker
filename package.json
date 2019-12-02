@@ -4,7 +4,10 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/index.js",
+    "react-dev": "webpack -d --w",
+    "seed": "node ./database/seeding.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,7 @@
     "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "mysql": "^2.17.1",
     "nodemon": "^2.0.1",
     "path": "^0.12.7",
