@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const restaurantsList = require('./restaurantList.js');
 const restaurants = restaurantsList.restaurants;
 const numUsers = 300;
-const numReviews = 1500;
+const numReviews = 1;
 const numRestaurants = restaurants.length;
 const foodPics = 'https://yelpfoodpics.s3-us-west-1.amazonaws.com/';
 
@@ -37,7 +37,7 @@ let mySQLqueries = {
   },
 
   seedUsers: function() {
-    let query = `INSERT INTO users (name, location, friends, elite, picture) VALUES `;
+    
 
     for (let i = 0; i < numUsers; i++) {
       let firstName = faker.name.firstName();
@@ -53,20 +53,17 @@ let mySQLqueries = {
       if(chanceOfElite < 1) {
         elite = 1;
       }
-      
-      if(i === numUsers - 1) {
-        query += `('${name}', '${location}', ${friends}, ${elite}, '${picture}');`;
-      } else {
-        query += `('${name}', '${location}', ${friends}, ${elite}, '${picture}'), `;
-      }
+      let query = `INSERT INTO users (name, location, friends, elite, picture) VALUES `;
+      query += `('${name}', '${location}', ${friends}, ${elite}, '${picture}');`;
+    
+      connection.query(query, function(err, data) {
+        if(err) {
+          console.log('seed users error', err);
+        } else {
+          // console.log('seed users succeed.');
+        }
+      });
     }
-    connection.query(query, function(err, data) {
-      if(err) {
-        console.log('seed users error', err);
-      } else {
-        console.log('seed users succeed.');
-      }
-    });
   },
 
   seedReviews: function() {
@@ -76,15 +73,13 @@ let mySQLqueries = {
       let date = faker.date.recent(1600).toISOString().split('T')[0]
       let review = faker.lorem.paragraph();
       let stars = Math.floor(Math.random() * 4) + 1;
-      let restaurantId = Math.floor(Math.random() * numRestaurants);
-      let userId = Math.floor(Math.random() * numUsers);
+      let restaurantId = Math.floor(Math.random() * numRestaurants) + 1;
+      let userId = Math.floor(Math.random() * numUsers) + 1;
       let query = `INSERT INTO reviews(date, review, stars, user_id, restaurant_id) VALUES `;
       let chanceOfPics = Math.floor(Math.random() * 9);
-
       let numFoodPics = Math.floor(Math.random() * 7);
       let links = [];
       
-
       //20% chance of adding picture to review
       if(chanceOfPics < 2) {
         for(let i = 0; i < numFoodPics; i++) {
@@ -92,8 +87,6 @@ let mySQLqueries = {
           links.push(foodPics + foodPicNum + '.jpg' );
         }
       }
-
-      
 
       query += `('${date}', '${review}', ${stars}, ${userId}, ${restaurantId}); `;  
     
@@ -108,7 +101,8 @@ let mySQLqueries = {
               if(err) {
                 console.log('error review pics', err);
               } else {
-                // connection.end();
+                console.log(data);
+                // let updateUserQuery =  `UPDATE users SET numReviews = numReviews + 1, numPics = numPics + ${links.length} WHERE  `
               }
             });
           } else {
@@ -122,5 +116,5 @@ let mySQLqueries = {
 }
 
 // mySQLqueries.seedRestaurants();
-mySQLqueries.seedUsers();
-// mySQLqueries.seedReviews();
+// mySQLqueries.seedUsers();
+mySQLqueries.seedReviews();
