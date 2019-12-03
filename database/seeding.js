@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const restaurantsList = require('./restaurantList.js');
 const restaurants = restaurantsList.restaurants;
 const numUsers = 300;
-const numReviews = 1;
+const numReviews = 1500;
 const numRestaurants = restaurants.length;
 const foodPics = 'https://yelpfoodpics.s3-us-west-1.amazonaws.com/';
 
@@ -18,7 +18,7 @@ connection.connect();
 
 let mySQLqueries = {
 
-  seedRestaurants: function() {
+  seedRestaurants: async function() {
     let query = `INSERT INTO restaurants (name) VALUES `;
     for (let i = 0; i < restaurants.length; i++) {
       if(i === restaurants.length - 1) {
@@ -27,7 +27,7 @@ let mySQLqueries = {
         query += `('${restaurants[i]}'),`;
       }
     }
-    connection.query(query, function(err, data) {
+    await connection.query(query, function(err, data) {
       if(err) {
         console.log('seed restaurant error', err);
       } else {
@@ -36,7 +36,7 @@ let mySQLqueries = {
     });
   },
 
-  seedUsers: function() {
+  seedUsers: async function() {
     
 
     for (let i = 0; i < numUsers; i++) {
@@ -56,7 +56,7 @@ let mySQLqueries = {
       let query = `INSERT INTO users (name, location, friends, elite, picture) VALUES `;
       query += `('${name}', '${location}', ${friends}, ${elite}, '${picture}');`;
     
-      connection.query(query, function(err, data) {
+      await connection.query(query, function(err, data) {
         if(err) {
           console.log('seed users error', err);
         } else {
@@ -66,7 +66,7 @@ let mySQLqueries = {
     }
   },
 
-  seedReviews: function() {
+  seedReviews: async function() {
     
     //select random restaurant and user
     for(let i = 0; i < numReviews; i++) {
@@ -90,7 +90,7 @@ let mySQLqueries = {
 
       query += `('${date}', '${review}', ${stars}, ${userId}, ${restaurantId}); `;  
     
-      connection.query(query, function(err, data) {
+      await connection.query(query, function(err, data) {
         if(err) {
           console.log('query error', err);
         } else {
@@ -101,19 +101,22 @@ let mySQLqueries = {
               if(err) {
                 console.log('error review pics', err);
               } else {
-                console.log(data);
-                // let updateUserQuery =  `UPDATE users SET numReviews = numReviews + 1, numPics = numPics + ${links.length} WHERE  `
+                let updateUserQuery =  `UPDATE users SET numReviews = numReviews + 1, numPics = numPics + ${links.length} WHERE id = ${userId};`
+                connection.query(updateUserQuery, function(err, data) {
+                  if(err) {
+                    console.log('error update user', err);
+                  }
+                });
               }
             });
-          } else {
-            // connection.query(`COMMIT;`);
-            // connection.end();
           }
         }
       });
     }
   }
+  
 }
+
 
 // mySQLqueries.seedRestaurants();
 // mySQLqueries.seedUsers();

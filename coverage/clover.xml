@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1575411077637" clover="3.2.0">
+  <project timestamp="1575411077637" name="All files">
+    <metrics statements="21" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="14" coveredmethods="4" elements="37" coveredelements="12" complexity="0" loc="21" ncloc="21" packages="1" files="5" classes="5"/>
+    <file name="HoverLinks.jsx" path="C:\Users\weevi\Documents\GitHub\hrsf124\FEC\client\src\components\HoverLinks.jsx">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="5" count="0" type="stmt"/>
+    </file>
+    <file name="ReviewEntry.jsx" path="C:\Users\weevi\Documents\GitHub\hrsf124\FEC\client\src\components\ReviewEntry.jsx">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+    </file>
+    <file name="ReviewList.jsx" path="C:\Users\weevi\Documents\GitHub\hrsf124\FEC\client\src\components\ReviewList.jsx">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="16" count="0" type="stmt"/>
+    </file>
+    <file name="Search.jsx" path="C:\Users\weevi\Documents\GitHub\hrsf124\FEC\client\src\components\Search.jsx">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+    </file>
+    <file name="YelpReviews.jsx" path="C:\Users\weevi\Documents\GitHub\hrsf124\FEC\client\src\components\YelpReviews.jsx">
+      <metrics statements="11" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="4"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="26" count="0" type="stmt"/>
+      <line num="30" count="0" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="40" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="41" count="0" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
 import ReviewEntry from './ReviewList.jsx';
+import HoverLinks from './HoverLinks.jsx';
 
 
 class YelpReviews extends React.Component {
@@ -10,7 +11,8 @@ class YelpReviews extends React.Component {
 
     this.state = {
       restName: 'RM 212',
-      reviewsInfo: []
+      reviewsInfo: [],
+      hover: false
     }
   }
 
@@ -28,14 +30,25 @@ class YelpReviews extends React.Component {
     .catch(err => console.log('error retrieving data', err))
   }
 
+  hoverChange() {
+    this.setState({
+      hover: !this.state.hover
+    });
+  }
 
+  handleHover() {
+    if(this.state.hover === true) {
+      return <HoverLinks />
+    }
+  }
 
 
   render() {
     return (
-    <div className='reviews_container'>
+    <div className='reviews_container' onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
       <Search />
       <ReviewEntry info={this.state.reviewsInfo}/>
+      {this.handleHover()}
     </div>
     )}
 }
