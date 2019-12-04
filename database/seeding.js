@@ -1,9 +1,10 @@
 const faker = require('faker');
+const Promise = require('bluebird');
 const mysql = require('mysql');
 const restaurantsList = require('./restaurantList.js');
 const restaurants = restaurantsList.restaurants;
-const numUsers = 300;
-const numReviews = 1500;
+const numUsers = 1000;
+const numReviews = 10000;
 const numRestaurants = restaurants.length;
 const foodPics = 'https://yelpfoodpics.s3-us-west-1.amazonaws.com/';
 
@@ -18,7 +19,7 @@ connection.connect();
 
 let mySQLqueries = {
 
-  seedRestaurants: async function() {
+  seedRestaurants: new Promise((resolve, reject) => {
     let query = `INSERT INTO restaurants (name) VALUES `;
     for (let i = 0; i < restaurants.length; i++) {
       if(i === restaurants.length - 1) {
@@ -27,18 +28,18 @@ let mySQLqueries = {
         query += `('${restaurants[i]}'),`;
       }
     }
-    await connection.query(query, function(err, data) {
+    connection.query(query, function(err, data) {
       if(err) {
-        console.log('seed restaurant error', err);
+        reject(err)
       } else {
-        console.log('seed restaurants succeed.');
+        resolve();
       }
     });
-  },
+  }),
 
-  seedUsers: async function() {
+  seedUsers: new Promise((resolve, reject) => {
     
-
+    let query = `INSERT INTO users (name, location, friends, elite, picture) VALUES `;
     for (let i = 0; i < numUsers; i++) {
       let firstName = faker.name.firstName();
       let lastInitial = String.fromCharCode(Math.floor((Math.random() * 26) + 65)) + '.';
@@ -53,21 +54,25 @@ let mySQLqueries = {
       if(chanceOfElite < 1) {
         elite = 1;
       }
-      let query = `INSERT INTO users (name, location, friends, elite, picture) VALUES `;
-      query += `('${name}', '${location}', ${friends}, ${elite}, '${picture}');`;
-    
-      await connection.query(query, function(err, data) {
-        if(err) {
-          console.log('seed users error', err);
-        } else {
-          // console.log('seed users succeed.');
-        }
-      });
+      if(i === numUsers - 1) {
+        query += `("${name}", "${location}", ${friends}, ${elite}, '${picture}');`;
+      } else {
+        query += `("${name}", "${location}", ${friends}, ${elite}, '${picture}'),`;
+      }
     }
-  },
-
-  seedReviews: async function() {
     
+    connection.query(query, function(err, data) {
+      if(err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  }),
+
+  seedReviews: function() {
+    
+    let promises = [];
     //select random restaurant and user
     for(let i = 0; i < numReviews; i++) {
       let date = faker.date.recent(1600).toISOString().split('T')[0]
@@ -90,7 +95,23 @@ let mySQLqueries = {
 
       query += `('${date}', '${review}', ${stars}, ${userId}, ${restaurantId}); `;  
     
-      await connection.query(query, function(err, data) {
+      
+      // return connect.queryPromise(query)
+      // .then((data) => {
+      //   if(links.length > 0) {
+      //     let lastInsertId = data.insertId;
+      //     let reviewPicQuery = `INSERT INTO reviewpictures (links, review_id) VALUES ('${links}', ${lastInsertId});`;
+      //     return connect.queryPromise(reviewPicQuery);
+      //   }
+      // })
+      // .then(() => {
+      //   let updateUserQuery =  `UPDATE users SET numReviews = numReviews + 1, numPics = numPics + ${links.length} WHERE id = ${userId};`;
+      //   return connect.queryPromise(updateUserQuery);
+      // })
+    
+
+
+      connection.query(query, function(err, data) {
         if(err) {
           console.log('query error', err);
         } else {
@@ -118,6 +139,16 @@ let mySQLqueries = {
 }
 
 
-// mySQLqueries.seedRestaurants();
+mySQLqueries.seedUsers
+.then(() => {mySQLqueries.seedRestaurants})
+.then(() => {mySQLqueries.seedReviews()})
+.catch(err => {console.log(err)});
+// .then(()=> {return mySQLqueries.seedUsers})
+// .then(() => mySQLqueries.seedReviews())
 // mySQLqueries.seedUsers();
-mySQLqueries.seedReviews();
+// mySQLqueries.seedReviews();
+
+
+
+
+ 

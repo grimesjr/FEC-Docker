@@ -30,6 +30,7 @@
   "homepage": "https://github.com/JADE-Global/reviews#readme",
   "devDependencies": {
     "babel-jest": "^24.9.0",
+    "bluebird": "^3.7.2",
     "css-loader": "^3.2.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
