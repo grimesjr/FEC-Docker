@@ -22,13 +22,10 @@ class YelpReviews extends React.Component {
   async componentDidMount() {
     let name = this.state.restName;
     let url = '/restaurantReviews/' + name;
-    await axios.get(url)
-    .then(data => {
-      this.setState({
+    let data = await axios.get(url)
+    this.setState({
         reviewsInfo: data
-      });
     })
-    .catch(err => console.log('error retrieving data', err))
   }
 
   hoverChange() {
