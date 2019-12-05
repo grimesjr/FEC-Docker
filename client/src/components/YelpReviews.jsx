@@ -3,6 +3,7 @@ import axios from 'axios';
 import Search from './Search.jsx';
 import ReviewEntry from './ReviewList.jsx';
 import HoverLinks from './HoverLinks.jsx';
+import Stars from './Stars.jsx';
 import regeneratorRuntime from "regenerator-runtime";
 
 
@@ -49,6 +50,7 @@ class YelpReviews extends React.Component {
     return (
     <div className='reviews_container' onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
       <Search handleSearchInput={this.handleSearchInput.bind(this)}/>
+      <Stars stars={1}/>
       <ReviewEntry info={this.state.reviewsInfo}/>
       {this.handleHover()}
     </div>
