@@ -112,8 +112,3 @@ db.seedUsers()
 .then(() => db.seedRestaurants())
 .then(() => db.seedReviews())
 .catch(err => {console.log('err')});
-
-
-
-
- 

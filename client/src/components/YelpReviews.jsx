@@ -3,6 +3,7 @@ import axios from 'axios';
 import Search from './Search.jsx';
 import ReviewEntry from './ReviewList.jsx';
 import HoverLinks from './HoverLinks.jsx';
+import regeneratorRuntime from "regenerator-runtime";
 
 
 class YelpReviews extends React.Component {
@@ -18,16 +19,13 @@ class YelpReviews extends React.Component {
 
   //name should be passed down as props, now just for testing
   //get returns an array of objects
-  componentDidMount() {
+  async componentDidMount() {
     let name = this.state.restName;
     let url = '/restaurantReviews/' + name;
-    axios.get(url)
-    .then(data => {
-      this.setState({
+    let data = await axios.get(url)
+    this.setState({
         reviewsInfo: data
-      });
     })
-    .catch(err => console.log('error retrieving data', err))
   }
 
   hoverChange() {
@@ -42,11 +40,15 @@ class YelpReviews extends React.Component {
     }
   }
 
+  handleSearchInput(search) {
+    console.log(search);
+  }
+
 
   render() {
     return (
     <div className='reviews_container' onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
-      <Search />
+      <Search handleSearchInput={this.handleSearchInput.bind(this)}/>
       <ReviewEntry info={this.state.reviewsInfo}/>
       {this.handleHover()}
     </div>
