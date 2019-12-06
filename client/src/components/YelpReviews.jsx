@@ -1,10 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
-import ReviewEntry from './ReviewList.jsx';
-import HoverLinks from './HoverLinks.jsx';
-import Stars from './Stars.jsx';
+import ReviewList from './ReviewList.jsx';
 import regeneratorRuntime from "regenerator-runtime";
+import styles from '../YelpsReviews.css';
 
 
 class YelpReviews extends React.Component {
@@ -12,9 +11,8 @@ class YelpReviews extends React.Component {
     super(props);
 
     this.state = {
-      restName: 'RM 212',
+      restName: 'Miss SaiGon',
       reviewsInfo: [],
-      hover: false
     }
   }
 
@@ -25,34 +23,19 @@ class YelpReviews extends React.Component {
     let url = '/restaurantReviews/' + name;
     let data = await axios.get(url)
     this.setState({
-        reviewsInfo: data
+        reviewsInfo: data.data
     })
-  }
-
-  hoverChange() {
-    this.setState({
-      hover: !this.state.hover
-    });
-  }
-
-  handleHover() {
-    if(this.state.hover === true) {
-      return <HoverLinks />
-    }
   }
 
   handleSearchInput(search) {
     console.log(search);
   }
 
-
   render() {
     return (
-    <div className='reviews_container' onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
+    <div>
       <Search handleSearchInput={this.handleSearchInput.bind(this)}/>
-      <Stars stars={1}/>
-      <ReviewEntry info={this.state.reviewsInfo}/>
-      {this.handleHover()}
+      <ReviewList reviews={this.state.reviewsInfo} hover={this.state.hover}/>
     </div>
     )}
 }

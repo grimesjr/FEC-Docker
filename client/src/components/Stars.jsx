@@ -7,15 +7,15 @@ class Stars extends React.Component {
 
   returnStar(){
     let stars = this.props.stars;
-    if(stars === 1) {
+    if (stars === 1) {
       return <img src='https://yelpicons.s3-us-west-1.amazonaws.com/regular_1.png'/>
-    } else if( stars === 2) {
+    } else if (stars === 2) {
       return <img src='https://yelpicons.s3-us-west-1.amazonaws.com/regular_2.png'/>
-    } else if( stars === 3) {
+    } else if (stars === 3) {
       return <img src='https://yelpicons.s3-us-west-1.amazonaws.com/regular_3.png'/>
-    } else if( stars === 4) {
+    } else if (stars === 4) {
       return <img src='https://yelpicons.s3-us-west-1.amazonaws.com/regular_4.png'/>
-    } else if( stars === 5) {
+    } else if (stars === 5) {
       return <img src='https://yelpicons.s3-us-west-1.amazonaws.com/regular_5.png'/>
     }
   }
