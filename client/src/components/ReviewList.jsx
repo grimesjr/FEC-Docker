@@ -15,7 +15,7 @@ class ReviewList extends React.Component {
   render() {
     return (
     <div className='review_container'>
-      <ReviewEntry />
+      {this.props.reviews.map(review => <ReviewEntry review={review} hover={this.props.hover}/>)}
     </div>
     )}
 }

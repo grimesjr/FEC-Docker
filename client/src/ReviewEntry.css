@@ -1,0 +1,45 @@
+.reviewEntry_container {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 200px 200px 200px;
+  background-color: #fff;
+  color: #444;
+  grid-row: auto;
+    
+}
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 0px;
+  padding: 20px;
+  font-size: 150%;
+
+}
+
+.user {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  /* background-color: limegreen; */
+  width: 100px;
+  height: 100px;
+}
+.empty {
+  grid-column: 2 /4;
+  grid-row: 1 / 3;
+  background-color: magenta;
+}
+.review {
+  grid-column: 1 ;
+  grid-row: 2 ;
+  background-color: mediumpurple;
+}
+
+.image {
+  max-width: 100%;
+  /* max-height: 100%; */
+}
+
+.userPic {
+  width: 50px;
+  height: 50px;
+}
