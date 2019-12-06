@@ -11,7 +11,6 @@ class ReviewList extends React.Component {
     }
   }
 
-
   render() {
     return (
     <div className='review_container'>

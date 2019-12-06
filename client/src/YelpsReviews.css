@@ -6,17 +6,6 @@
   background-color: #6DB9EE;
 }
 
-.hoverlinks {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #0073bb;
-  font-weight: bold;
-}
-
-.shareLink {
-  list-style-image: url('https://yelpicons.s3-us-west-1.amazonaws.com/share.png');
-  
-}
-
 .icon_container {
   width: 18px;
   height: 18px;
