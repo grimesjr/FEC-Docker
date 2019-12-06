@@ -26,23 +26,24 @@ class ReviewEntry extends React.Component {
       numPics: data.numPics,
       picture: data.picture,
       reviews: data.numReviews
-    }
+    };
+
     this.setState({
       user: userInfo
     });
-;  }
+  };
 
   hoverChange() {
     this.setState({
       hover: !this.state.hover
     });
-  }
+  };
 
   handleHover() {
     if(this.state.hover === true) {
       return <HoverLinks />
     }
-  }
+  };
 
 
   render() {
@@ -67,8 +68,13 @@ class ReviewEntry extends React.Component {
           {this.handleHover()}
         </div>
       </div>
-      <div className={`${styles.review} ${styles.box}`}>2</div>
-      <div className={`${styles.empty} ${styles.box}`}>3</div>
+      <div className={`${styles.review} ${styles.box}`}>
+        <div>
+          <Stars stars={this.props.review.stars}/>
+        </div><br/>
+        <div>{this.props.review.review}</div>
+      </div>
+      <div className={`${styles.empty} ${styles.box}`}>empty</div>
     </div>
     )}
 }
