@@ -13,9 +13,9 @@
 }
 
 .shareLink {
-  list-style-image: url('https://yelpicons.s3-us-west-1.amazonaws.com/share.png');
+  list-style-image: url('https://yelpicons.s3-us-west-1.amazonaws.com/star.svg');
+  fill:'orange';
   
-}
 
 .icon_container {
   width: 18px;
