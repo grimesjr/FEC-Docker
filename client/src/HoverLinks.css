@@ -6,13 +6,13 @@
 }
 
 .icon_container {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   display: inline-block;
 }
 
 .links {
-  padding: 2px;
+  padding: 0px 5px 5px 5px;
   display: inline;
 }
 
@@ -25,4 +25,10 @@
 .icon_image {
   max-width: 100%;
   max-height: 100%;
+}
+
+.linksText {
+  border-bottom-style: solid;
+  border-bottom-color: rgb(230, 230, 230);
+  border-bottom-width: 1px;
 }

@@ -8,51 +8,51 @@ function HoverLinks(props) {
         <div>
           <div className={styles.icon_border}>
             <div className={styles.icon_container}>
-              <img className='icon_image' src='https://yelpicons.s3-us-west-1.amazonaws.com/share.png'/>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/share.png'/>
             </div>
           </div>
             <div className={styles.links}>
-              <span>Share Review</span>
+              <span className={styles.linksText}>Share Review</span>
             </div>
         </div>
         <div>
           <div className={styles.icon_border}>
             <div className={styles.icon_container}>
-              <img className='icon_image' src='https://yelpicons.s3-us-west-1.amazonaws.com/embed.png'/>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/embed.png'/>
             </div>
           </div>
             <div className={styles.links}>
-              <span>Embed Review</span>
+              <span className={styles.linksText}>Embed Review</span>
             </div>
         </div>
         <div>
           <div className={styles.icon_border}>
             <div className={styles.icon_container}>
-              <img className='icon_image' src='https://yelpicons.s3-us-west-1.amazonaws.com/compliment.png'/>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/compliment.png'/>
             </div>
           </div>
             <div className={styles.links}>
-              <span>Compliment</span>
+              <span className={styles.linksText}>Compliment</span>
             </div>
         </div>
         <div>
           <div className={styles.icon_border}>
             <div className={styles.icon_container}>
-              <img className='icon_image' src='https://yelpicons.s3-us-west-1.amazonaws.com/message.png'/>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/message.png'/>
             </div>
           </div>
             <div className={styles.links}>
-              <span>Send Message</span>
+              <span className={styles.linksText}>Send Message</span>
             </div>
         </div>
         <div>
           <div className={styles.icon_border}>
             <div className={styles.icon_container}>
-              <img className='icon_image' src='https://yelpicons.s3-us-west-1.amazonaws.com/follow.png'/>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/follow.png'/>
             </div>
           </div>
             <div className={styles.links}>
-              <span>Follow</span>
+              <span className={styles.linksText}>Follow</span>
             </div>
         </div>
         

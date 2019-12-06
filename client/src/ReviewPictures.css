@@ -1,0 +1,29 @@
+.container3 {
+  display: grid;
+  grid-gap: 10px;
+  
+  grid-row: auto;
+}
+
+
+
+.pics_container1 {
+  width: 350px;
+}
+
+.pics_container2 {
+  display: inline-block;
+  width: 175px;
+  height: 175px;
+  overflow: hidden;
+  align-items: center;
+}
+
+.pics1 {
+  max-width: 100%;
+}
+
+.pics2 {
+  max-width: 100%;
+  min-height: 100%;
+}

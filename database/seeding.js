@@ -2,8 +2,8 @@ const faker = require('faker');
 const mysql = require('mysql');
 const restaurantsList = require('./restaurantList.js');
 const restaurants = restaurantsList.restaurants;
-const numUsers = 10;
-const numReviews = 200;
+const numUsers = 100;
+const numReviews = 2000;
 const numRestaurants = restaurants.length;
 const foodPics = 'https://yelpfoodpics.s3-us-west-1.amazonaws.com/';
 

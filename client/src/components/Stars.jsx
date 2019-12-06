@@ -22,7 +22,7 @@ class Stars extends React.Component {
 
   render() {
     return (
-    <div className='stars_container'>
+    <div>
       {this.returnStar()}
     </div>
     )}

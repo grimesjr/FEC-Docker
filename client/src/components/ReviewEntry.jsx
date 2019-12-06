@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../ReviewEntry.css';
 import HoverLinks from './HoverLinks.jsx';
 import Stars from './Stars.jsx';
+import ReviewPictures from './ReviewPictures.jsx'
 import Icons from './icons/wrapper.jsx';
 
 
@@ -44,12 +45,17 @@ class ReviewEntry extends React.Component {
       return <HoverLinks />
     }
   };
+  showPictures() {
+    if(this.props.review.links !== null) {
+      return <ReviewPictures links={this.props.review.links}/>
+    }
+  }
 
 
   render() {
     return (
     <div className={styles.reviewEntry_container} onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
-      <div className={`${styles.user} ${styles.box}`}>
+      <div className={styles.user}>
         <div>
           <div className={styles.userPic_container}>
               <img src={this.state.user.picture} className={styles.userPic}/>
@@ -68,13 +74,13 @@ class ReviewEntry extends React.Component {
           {this.handleHover()}
         </div>
       </div>
-      <div className={`${styles.review} ${styles.box}`}>
+      <div className={styles.review}>
         <div>
           <Stars stars={this.props.review.stars}/>
         </div><br/>
         <div>{this.props.review.review}</div>
+        {this.showPictures()}
       </div>
-      <div className={`${styles.empty} ${styles.box}`}>empty</div>
     </div>
     )}
 }
