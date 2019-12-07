@@ -1,18 +1,63 @@
 import React from 'react';
-import styles from '../YelpsReviews.css';
-import Icon from './icons/wrapper.jsx'
+import styles from '../HoverLinks.css';
 
 function HoverLinks(props) {
   return (
-    <ul className={styles.hoverlinks}>
-      <li className={styles.shareLink}>Share Review</li>
-      <li>Embed Review</li>
-      <li>Compliment</li>
-      <li>Send message</li>
-      <li>Follow </li>
-      <Icon className='friends' icon='friends' />
-      <Icon icon='message'/>
-    </ul>
+    <div>
+      <div className={styles.hoverlinks}>
+        <div>
+          <div className={styles.icon_border}>
+            <div className={styles.icon_container}>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/share.png'/>
+            </div>
+          </div>
+            <div className={styles.links}>
+              <span className={styles.linksText}>Share Review</span>
+            </div>
+        </div>
+        <div>
+          <div className={styles.icon_border}>
+            <div className={styles.icon_container}>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/embed.png'/>
+            </div>
+          </div>
+            <div className={styles.links}>
+              <span className={styles.linksText}>Embed Review</span>
+            </div>
+        </div>
+        <div>
+          <div className={styles.icon_border}>
+            <div className={styles.icon_container}>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/compliment.png'/>
+            </div>
+          </div>
+            <div className={styles.links}>
+              <span className={styles.linksText}>Compliment</span>
+            </div>
+        </div>
+        <div>
+          <div className={styles.icon_border}>
+            <div className={styles.icon_container}>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/message.png'/>
+            </div>
+          </div>
+            <div className={styles.links}>
+              <span className={styles.linksText}>Send Message</span>
+            </div>
+        </div>
+        <div>
+          <div className={styles.icon_border}>
+            <div className={styles.icon_container}>
+              <img className={styles.icon_image} src='https://yelpicons.s3-us-west-1.amazonaws.com/follow.png'/>
+            </div>
+          </div>
+            <div className={styles.links}>
+              <span className={styles.linksText}>Follow</span>
+            </div>
+        </div>
+        
+      </div>
+    </div>
   )
 }
 
