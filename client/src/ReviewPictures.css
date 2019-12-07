@@ -1,14 +1,8 @@
-.container3 {
-  display: grid;
-  grid-gap: 10px;
-  
-  grid-row: auto;
-}
-
-
-
 .pics_container1 {
   width: 350px;
+  height: 350px;
+  overflow: hidden;
+  align-items: center;
 }
 
 .pics_container2 {
@@ -21,6 +15,7 @@
 
 .pics1 {
   max-width: 100%;
+  min-height: 100%;
 }
 
 .pics2 {

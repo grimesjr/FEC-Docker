@@ -3,8 +3,6 @@ import styles from '../ReviewEntry.css';
 import HoverLinks from './HoverLinks.jsx';
 import Stars from './Stars.jsx';
 import ReviewPictures from './ReviewPictures.jsx'
-import Icons from './icons/wrapper.jsx';
-
 
 class ReviewEntry extends React.Component {
   constructor(props) {
@@ -51,7 +49,6 @@ class ReviewEntry extends React.Component {
     }
   }
 
-
   render() {
     return (
     <div className={styles.reviewEntry_container} onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
@@ -67,10 +64,8 @@ class ReviewEntry extends React.Component {
               <div><b>{this.state.user.reviews}</b> reviews</div>
               <div><b>{this.state.user.numPics}</b> photos</div>
           </div>
-        </div>
-          
+        </div>  
         <div className={styles.hover_container}>
-
           {this.handleHover()}
         </div>
       </div>
