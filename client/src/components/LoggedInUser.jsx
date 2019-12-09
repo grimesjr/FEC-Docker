@@ -18,8 +18,9 @@ export class LoggedInUser extends React.Component {
   } 
 
   showSubmitReview() {
+
     if(this.state.PostReview) {
-      <SubmitReviewPop togglePostReview={this.togglePostReview.bind(this)}/>
+      return <SubmitReviewPop togglePostReview={this.togglePostReview.bind(this)}/>
     }
   }
 

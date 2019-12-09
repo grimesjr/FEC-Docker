@@ -14,7 +14,7 @@ class YelpReviews extends React.Component {
 
     this.state = {
       restName: 'Miss SaiGon',
-      sort: 'Oldest',
+      sort: 'Newest',
       reviewsInfo: [],
       showPopover: false,
       loggedUser: {
@@ -50,8 +50,9 @@ class YelpReviews extends React.Component {
   }
 
   onSelectChange (e) {
-    this.setState({
-      sort: e.target.value,
+    let temp = e.target.value;
+    this.setState(()=>{
+      return {sort: temp}
     })
     this.updateReviews();
   }

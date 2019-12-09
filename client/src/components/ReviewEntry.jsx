@@ -49,6 +49,7 @@ class ReviewEntry extends React.Component {
 
   render() {
     return (
+      
       <div className={styles.reviewEntry_container} onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
         <UserInfo userInfo={this.state.user} hover={this.state.hover}/>
         <div className={styles.review}>
@@ -61,6 +62,7 @@ class ReviewEntry extends React.Component {
             </div>
           </div>
           <div>{this.props.review.review}</div>
+          <br/>
           {this.showPictures()}
         </div>
       </div>

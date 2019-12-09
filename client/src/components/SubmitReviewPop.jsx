@@ -9,22 +9,18 @@ export class SubmitReviewPop extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let img = e.target.file.files[0];
-    let fd= new FormData();
-  
-    fd.append('image', img);
-  
-    axios.post('/uploadAWS', fd)
-      .then(resp => {
-         console.log(resp);
-      })
-    
+    console.log(img.name);
+    AWS.upload(img.name);
+  }
 
+  handleClick(e) {
+    e.stopPropagation();
   }
 
   render() {
     return (
-      <div className={styles.fullPage}>
-        <div className={styles.review_container}>review
+      <div className={styles.fullPage} onClick={this.props.togglePostReview}>
+        <div className={styles.review_container} onClick={this.handleClick}>review
           <div>
 
           </div>
@@ -32,13 +28,13 @@ export class SubmitReviewPop extends React.Component {
 
           </div>
           <textarea className={styles.textarea}></textarea>
-        </div><br/>
+        <br/>
         <div>Attach Photos(optional)</div><br/>
         <form onSubmit={this.handleSubmit}>
           <input type='file' name='file' className={styles.selectFile}></input>
           <input type='submit'/>
         </form>
-
+        </div>
       </div>
     )
   }
