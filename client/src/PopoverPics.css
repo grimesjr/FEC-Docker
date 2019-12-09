@@ -1,6 +1,11 @@
+body {
+  /* overflow-y: hidden; */
+}
+
 .fullPage {
-  position: absolute;
+  position: fixed;
   top: 0px;
+  left: 0px;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -16,9 +21,11 @@
   background-color: lightblue;
   display: flex;
   flex-direction: row;
+  z-index: 2;
 }
 
 .picture_container {
+  display: flex;
   width: 900px;
   min-width: 600px;
   background-color: black;
@@ -32,8 +39,8 @@
   background-color: maroon;
   z-index: 2;
   position: relative;
-  left: 0px;
-  top: 200px;
+  right: 0px;
+  top: 400px;
 
 }
 
@@ -61,6 +68,7 @@
   align-items: center;
   width: 295px;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .pictures_container {

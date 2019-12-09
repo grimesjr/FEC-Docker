@@ -15,9 +15,10 @@ export class PopoverPics extends React.Component {
 
   componentDidMount() {
     let linksArr = this.props.links.split(',');
+    let selected = this.props.selected;
     this.setState({
       links: linksArr,
-      currentPic: linksArr[0]
+      currentPic: linksArr[selected]
     })
 
   }
@@ -28,10 +29,14 @@ export class PopoverPics extends React.Component {
     });
   }
 
+  handleClick(e) {
+    e.stopPropagation();
+  }
+
   render() {
     return (
-      <div className={styles.fullPage}>
-        <div className={styles.wrapper}>
+      <div className={styles.fullPage} onClick={this.props.togglePopover}>
+        <div className={styles.wrapper} onClick={this.handleClick}>
           <div className={styles.picture_container}>
             <img src={this.state.currentPic} className={styles.foodPic}/>
             <div className={styles.arrow}></div>

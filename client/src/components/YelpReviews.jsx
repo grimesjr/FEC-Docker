@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
 import ReviewList from './ReviewList.jsx';
-import PopoverPics from './PopoverPics.jsx';
+import LoggedInUser from './LoggedInUser.jsx';
 import regeneratorRuntime from "regenerator-runtime";
 import styles from '../YelpsReviews.css';
+
 
 
 class YelpReviews extends React.Component {
@@ -13,17 +14,31 @@ class YelpReviews extends React.Component {
 
     this.state = {
       restName: 'Miss SaiGon',
+      sort: 'Oldest',
       reviewsInfo: [],
       showPopover: false,
-      testingLinks: "https://yelpfoodpics.s3-us-west-1.amazonaws.com/53.jpg,https://yelpfoodpics.s3-us-west-1.amazonaws.com/44.jpg,https://yelpfoodpics.s3-us-west-1.amazonaws.com/52.jpg,https://yelpfoodpics.s3-us-west-1.amazonaws.com/43.jpg"
+      loggedUser: {
+                elite: 0,
+                friend: 131,
+                location: "San Jose, Ca",
+                name: "Jimmy L.",
+                numPics: 3,
+                reviews: 1,
+                picture: "https://yelpfoodpics.s3-us-west-1.amazonaws.com/user.jpg",
+                }
     }
   }
 
   //name should be passed down as props, now just for testing
   //get returns an array of objects
-  async componentDidMount() {
+  componentDidMount() {
+    this.updateReviews();
+  }
+
+  async updateReviews() {
     let name = this.state.restName;
-    let url = '/restaurantReviews/' + name;
+    let sort =  this.state.sort;
+    let url = `/restaurantReviews/${name}&${sort}` ;
     let data = await axios.get(url)
     this.setState({
         reviewsInfo: data.data
@@ -34,26 +49,33 @@ class YelpReviews extends React.Component {
     console.log(search);
   }
 
-  togglePopover() {
+  onSelectChange (e) {
     this.setState({
-      showPopover: !this.state.showPopover,
+      sort: e.target.value,
     })
-  }
-  handlePopOver() {
-    if(this.state.showPopover === true) {
-      return <PopoverPics links={this.state.testingLinks}/>
-    }
+    this.updateReviews();
   }
 
   render() {
     return (
     <div>
-      <Search handleSearchInput={this.handleSearchInput.bind(this)}/>
-      <button onClick={this.togglePopover.bind(this)}>Popover</button> 
-      {this.handlePopOver()}
+      <div className={styles.search_container}>
+        <div className={styles.search}>
+          <Search handleSearchInput={this.handleSearchInput.bind(this)}/> 
+        </div>
+        <div>
+          <select onChange={this.onSelectChange.bind(this)}>
+            <option>Newest</option>
+            <option>Oldest</option>     
+            <option>Highest</option> 
+            <option>Lowest</option>  
+          </select>
+        </div>
+      </div>     
+      <LoggedInUser userInfo={this.state.loggedUser} hover={false} restName={this.state.restName}/>
       <ReviewList reviews={this.state.reviewsInfo} hover={this.state.hover}/>
     </div>
-    )}
+  )}
 }
 
 export default YelpReviews;

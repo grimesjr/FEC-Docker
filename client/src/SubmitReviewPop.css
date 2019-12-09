@@ -1,0 +1,25 @@
+.fullPage {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+.review_container {
+  width: 500px;
+  height: 400px;
+  border: rgb(187, 186, 186);
+  border-style: solid;
+  padding: 20px;
+}
+
+.textarea {
+  width: 480px;
+  height: 300px;
+}
+
+.selectFile {
+  size: 60;
+}

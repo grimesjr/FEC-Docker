@@ -1,11 +1,11 @@
 .pics_container1 {
   width: 350px;
   height: 350px;
-  overflow: hidden;
   align-items: center;
+  text-align: center;
 }
 
-.pics_container2 {
+.pics_container_smaller {
   display: inline-block;
   width: 175px;
   height: 175px;
@@ -16,9 +16,16 @@
 .pics1 {
   max-width: 100%;
   min-height: 100%;
+
 }
 
 .pics2 {
   max-width: 100%;
   min-height: 100%;
+}
+
+.pics_container2 {
+  display: flex;
+  width: 350px;
+  height: 350px;
 }
