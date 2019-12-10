@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('../database/model.js');
 const app = express();
-const port = 3000;
+const port = 3003;
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
