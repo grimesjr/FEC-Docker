@@ -1,11 +1,12 @@
 const express = require('express');
 const db = require('../database/model.js');
 const app = express();
+const cors = require('cors');
 const port = 3003;
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/restaurantReviews/:name&:sort', function(req, res) {
