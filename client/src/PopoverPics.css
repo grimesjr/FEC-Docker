@@ -29,8 +29,8 @@ body {
   width: 900px;
   min-width: 600px;
   background-color: black;
-  justify-items: center; 
   align-items: center;
+  text-align: center;
 }
 
 .arrow {

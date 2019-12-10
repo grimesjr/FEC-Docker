@@ -1,8 +1,10 @@
 .pics_container1 {
+  display: flex;
   width: 350px;
   height: 350px;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .pics_container_smaller {
@@ -16,7 +18,6 @@
 .pics1 {
   max-width: 100%;
   min-height: 100%;
-
 }
 
 .pics2 {

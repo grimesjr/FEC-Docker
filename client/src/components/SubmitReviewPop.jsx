@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-export class SubmitReviewPop extends React.Component {
+class SubmitReviewPop extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();

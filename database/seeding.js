@@ -11,7 +11,7 @@ const foodPics = 'https://yelpfoodpics.s3-us-west-1.amazonaws.com/';
 const connection = mysql.createConnection({
   user: 'root',
   password: 'Derty321$',
-  database: 'yelp'
+  database: 'yelpReviews'
 });
 
 connection.connect();
