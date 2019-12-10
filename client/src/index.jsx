@@ -4,4 +4,4 @@ import YelpReviews from './components/YelpReviews.jsx';
 
 
 
-ReactDOM.render(<YelpReviews />, document.getElementById('root'));
+ReactDOM.render(<YelpReviews />, document.getElementById('reviews'));

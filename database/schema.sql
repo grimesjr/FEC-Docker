@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS yelpReview;
+DROP DATABASE IF EXISTS yelpReviews;
 
 CREATE DATABASE yelpReviews;
 
