@@ -11,7 +11,7 @@ const foodPics = 'https://yelpfoodpics.s3-us-west-1.amazonaws.com/';
 const connection = mysql.createConnection({
   user: 'root',
   password: 'Derty321$',
-  database: 'yelp'
+  database: 'yelpReviews'
 });
 
 connection.connect();
@@ -85,7 +85,7 @@ let db = {
       let links = [];
       
       //20% chance of adding picture to review
-      if(chanceOfPics < 2) {
+      if(chanceOfPics < 5) {
         for(let i = 0; i < numFoodPics; i++) {
           let foodPicNum = Math.floor(Math.random() * 60);
           links.push(foodPics + foodPicNum + '.jpg' );

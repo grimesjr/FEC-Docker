@@ -1,0 +1,86 @@
+body {
+  /* overflow-y: hidden; */
+}
+
+.fullPage {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  width: 1200px;
+  height: 600px;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: row;
+  z-index: 2;
+}
+
+.picture_container {
+  display: flex;
+  width: 900px;
+  min-width: 600px;
+  background-color: black;
+  align-items: center;
+  text-align: center;
+}
+
+.arrow {
+  width: 18px;
+  height: 18px;
+  background-color: maroon;
+  z-index: 2;
+  position: relative;
+  right: 0px;
+  top: 400px;
+
+}
+
+.foodPic {
+  /* max-width: 100%; */
+  max-height: 100%;  
+}
+
+.photoGallery {
+  min-width: 299px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 100px;
+  width: 299px;
+  background-color: lightseagreen;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.pictures {
+  overflow: scroll;
+  align-items: center;
+  width: 295px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.pictures_container {
+  width: 280px;
+  height: 165px;
+  overflow: hidden;
+  align-content: center;
+}
+
+.picture {
+  max-width: 100%;
+  min-height: 100%;;
+}
+
+

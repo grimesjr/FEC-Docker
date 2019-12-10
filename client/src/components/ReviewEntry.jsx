@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from '../ReviewEntry.css';
-import HoverLinks from './HoverLinks.jsx';
 import Stars from './Stars.jsx';
 import ReviewPictures from './ReviewPictures.jsx'
+import UserInfo from './UserInfo.jsx';
+import PopoverPics from './PopoverPics.jsx';
 
 class ReviewEntry extends React.Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class ReviewEntry extends React.Component {
       friend: data.friends,
       numPics: data.numPics,
       picture: data.picture,
-      reviews: data.numReviews
+      reviews: data.numReviews,
+      date: data.date.split('T')[0],
     };
 
     this.setState({
@@ -38,11 +40,7 @@ class ReviewEntry extends React.Component {
     });
   };
 
-  handleHover() {
-    if(this.state.hover === true) {
-      return <HoverLinks />
-    }
-  };
+  
   showPictures() {
     if(this.props.review.links !== null) {
       return <ReviewPictures links={this.props.review.links}/>
@@ -51,33 +49,24 @@ class ReviewEntry extends React.Component {
 
   render() {
     return (
-    <div className={styles.reviewEntry_container} onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
-      <div className={styles.user}>
-        <div>
-          <div className={styles.userPic_container}>
-              <img src={this.state.user.picture} className={styles.userPic}/>
+      
+      <div className={styles.reviewEntry_container} onMouseEnter={this.hoverChange.bind(this)} onMouseLeave={this.hoverChange.bind(this)}>
+        <UserInfo userInfo={this.state.user} hover={this.state.hover}/>
+        <div className={styles.review}>
+          <div className={styles.starDate}>
+            <div>
+              <Stars stars={this.props.review.stars}/> 
+            </div>
+            <div>
+              {this.state.user.date}
+            </div>
           </div>
-          <div className={styles.userInfo_container}> 
-              <div className={styles.userName}>{this.state.user.name}</div>
-              <div><b>{this.state.user.location}</b></div>
-              <div><b>{this.state.user.friend}</b> friends</div>
-              <div><b>{this.state.user.reviews}</b> reviews</div>
-              <div><b>{this.state.user.numPics}</b> photos</div>
-          </div>
-        </div>  
-        <div className={styles.hover_container}>
-          {this.handleHover()}
+          <div>{this.props.review.review}</div>
+          <br/>
+          {this.showPictures()}
         </div>
       </div>
-      <div className={styles.review}>
-        <div>
-          <Stars stars={this.props.review.stars}/>
-        </div><br/>
-        <div>{this.props.review.review}</div>
-        {this.showPictures()}
-      </div>
-    </div>
-    )}
+  )}
 }
 
 export default ReviewEntry;
