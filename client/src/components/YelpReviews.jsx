@@ -50,7 +50,6 @@ class YelpReviews extends React.Component {
   }
 
   onSelectChange (e) {
-    let temp = e.target.value;
     this.setState(()=>{
       return {sort: temp}
     })
